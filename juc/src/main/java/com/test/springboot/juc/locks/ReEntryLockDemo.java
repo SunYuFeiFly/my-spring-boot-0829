@@ -1,10 +1,9 @@
 package com.test.springboot.juc.locks;
 
-import java.lang.management.ThreadMXBean;
+import static com.test.springboot.juc.locks.LockSyncDemo.m3;
 
 /**
  * 可重入锁
- *
  * @author Administrator
  */
 
@@ -18,9 +17,9 @@ public class ReEntryLockDemo {
     }
 
     /**
-     * t1	 ----外层调用
-     * t1	 ----中层调用
-     * t1	 ----内层调用
+     * t1  ----外层调用
+     * t1  ----中层调用
+     * t1  ----内层调用
      */
     private static void reEntryM1() {
         Object object = new Object();
@@ -38,9 +37,9 @@ public class ReEntryLockDemo {
     }
 
     /**
-     * t2	 ----外层调用
-     * t2	 ----中层调用
-     * t2	 ----内层调用
+     * t2  ----外层调用
+     * t2  ----中层调用
+     * t2  ----内层调用
      */
     private static void reEntryM2() {
         Object object01 = new Object();
@@ -60,26 +59,25 @@ public class ReEntryLockDemo {
     }
 
     /**
-     * main	 ---- m1 come in
-     * main	 ---- m2 come in
-     * main	 ---- m3 come in
-     * main	 ---- m1 end m1
+     * main  ---- m1 come in
+     * main  ---- m2 come in
+     * main  ---- m3 come in
+     * main  ---- m1 end m1
      */
     private static void reEntryM3() {
         new ReEntryLockDemo().m1();
     }
 
     /**
-     * t3	 ---- m1 come in
-     * t3	 ---- m2 come in
-     * t3	 ---- m3 come in
-     * t3	 ---- m1 end m1
+     * t3  ---- m1 come in
+     * t3  ---- m2 come in
+     * t3  ---- m3 come in
+     * t3  ---- m1 end m1
      */
     private static void reEntryM4() {
         new Thread(() -> {
             new ReEntryLockDemo().m1();
         },"t3").start();
-
     }
 
     public synchronized void m1() {
@@ -95,6 +93,18 @@ public class ReEntryLockDemo {
     }
 
     public synchronized void m3() {
+        System.out.println(Thread.currentThread().getName() + "\t ---- m3 come in");
+    }
+
+    /**
+     * @Author syf_12138
+     * @Description TODO
+     * @param: i1
+     * @param: i2
+     * @Return void
+     * @Date 2022/7/6 18:21
+     */
+    public synchronized void test(int i1, int i2) {
         System.out.println(Thread.currentThread().getName() + "\t ---- m3 come in");
     }
 }
