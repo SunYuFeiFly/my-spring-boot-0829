@@ -13,6 +13,7 @@ public class SaleTicketDemo {
 
     public static void main(String[] args) {
         Ticket ticket = new Ticket();
+
         new Thread(() -> {
             for (int i = 0; i < 500; i++) {
                 ticket.sale();
@@ -34,9 +35,7 @@ public class SaleTicketDemo {
 }
 
 class Ticket {
-
     private int number = 500;
-
     ReentrantLock lock = new ReentrantLock(true);
 
     public void sale() {
