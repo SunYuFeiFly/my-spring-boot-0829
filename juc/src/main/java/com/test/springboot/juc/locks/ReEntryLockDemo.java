@@ -1,5 +1,7 @@
 package com.test.springboot.juc.locks;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import static com.test.springboot.juc.locks.LockSyncDemo.m3;
 
 /**
@@ -13,7 +15,49 @@ public class ReEntryLockDemo {
         // reEntryM1();
         // reEntryM2();
         // reEntryM3();
-        reEntryM4();
+        // reEntryM4();
+        testLock();
+    }
+
+    /**
+     * @Author syf_12138
+     * @Description 显式锁（可重入锁）,每次获取锁使用完成必须释放锁，<1>不然会导致下一个用锁的线程不能获取到锁，造成阻塞（每次获取锁，标记数会+1，释放锁会-1）
+     * @Return void
+     * @Date 2022/7/7 11:34
+     */
+    private static void testLock() {
+        ReentrantLock lock = new ReentrantLock();
+        new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + "外层调用");
+                lock.lock();
+                try {
+                    System.out.println(Thread.currentThread().getName() + "内层调用");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    // <1> lock.unlock();
+                    lock.unlock();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }, "t3").start();
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + "外层调用");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }, "t4").start();
+
     }
 
     /**
@@ -96,15 +140,5 @@ public class ReEntryLockDemo {
         System.out.println(Thread.currentThread().getName() + "\t ---- m3 come in");
     }
 
-    /**
-     * @Author syf_12138
-     * @Description TODO
-     * @param: i1
-     * @param: i2
-     * @Return void
-     * @Date 2022/7/6 18:21
-     */
-    public synchronized void test(int i1, int i2) {
-        System.out.println(Thread.currentThread().getName() + "\t ---- m3 come in");
-    }
+
 }
