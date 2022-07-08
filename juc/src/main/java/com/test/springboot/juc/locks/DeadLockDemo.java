@@ -58,6 +58,4 @@ public class DeadLockDemo {
             }
         },"B").start();
     }
-
-
 }
