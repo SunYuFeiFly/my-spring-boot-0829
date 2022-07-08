@@ -8,6 +8,7 @@ package com.test.springboot.juc.interrupt;/**
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @Description 线程打断
@@ -18,9 +19,47 @@ import java.util.concurrent.TimeUnit;
 public class InterruptDemo {
 
     static volatile boolean isStop = false;
+    static AtomicBoolean atomicBoolean = new AtomicBoolean(false);
 
     public static void main(String[] args) {
-        test01();
+        // testInterrupt();
+        testAtomicBoolean();
+    }
+
+    
+    /**
+     * @Author syf_12138
+     * @Description TODO
+     * @param: 
+     * @Return void
+     * @Date 2022/7/8 11:01
+     */
+    private static void testAtomicBoolean() {
+        new Thread(() -> {
+            while (true) {
+                if (atomicBoolean.get()) {
+                    System.out.println(Thread.currentThread().getName() + "线程即将被打断");
+                    break;
+                }
+                System.out.println("hello atomicBoolean api");
+            }
+        }, "t3").start();
+
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(() -> {
+            System.out.println("利用AtomicBoolean打断t3线程");
+            atomicBoolean.set(true);
+        }, "t4").start();
+
+
+
+
+
     }
 
 
@@ -30,7 +69,7 @@ public class InterruptDemo {
      * @Return void
      * @Date 2022/7/7 17:55
      */
-    private static void test01() {
+    private static void testInterrupt() {
         new Thread(() -> {
             while (true) {
                 if (isStop) {
