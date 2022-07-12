@@ -4,11 +4,6 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
-
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-/**
  * @Description 线程打断
  * @author syf_12138
  * @create 2022/7/7 17:55

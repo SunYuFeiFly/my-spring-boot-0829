@@ -3,10 +3,6 @@ package com.test.springboot.juc.interrupt;
 import java.util.concurrent.TimeUnit;
 
 /**
-
-import java.util.concurrent.TimeUnit;
-
-/**
  * @author syf_12138
  * @Description 线程打断及线程结束后打断状态
  * @create 2022/7/11 17:42
