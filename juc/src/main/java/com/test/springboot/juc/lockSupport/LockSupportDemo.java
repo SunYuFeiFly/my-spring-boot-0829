@@ -14,9 +14,9 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockSupportDemo {
 
     public static void main(String[] args) {
-        // testLockSupport();
+        testLockSupport();
         // syncWaitNotify();
-        lockAwaitSignal();
+        // lockAwaitSignal();
     }
 
 
@@ -104,6 +104,7 @@ public class LockSupportDemo {
     /**
      * @Author syf_12138
      * @Description 测试LockSupport的park()阻塞和unpark()放行方法，放行许可证只有一个
+     *              与前两者不同的是，前两者先执行释放等待会抛出异常，而LockSupport先发放许可，等执行到park()阻塞方法是会自动无效，相当于上高速先缴费了不阻塞通过（ETC）
      * @Return void
      * @Date 2022/7/12 23:34
      */
