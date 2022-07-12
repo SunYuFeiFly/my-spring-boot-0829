@@ -18,7 +18,6 @@ public class InterruptDemo3 {
     /**
      * @Author syf_12138
      * @Description 当线程调用wait(),sleep(),join()方法时，会将打断标志位值清除为false,此时在catch或finily方法体内重新再次做打断动作，则可将打断标志位设置为true。
-     * @param: 
      * @Return void
      * @Date 2022/7/12 11:46
      */
