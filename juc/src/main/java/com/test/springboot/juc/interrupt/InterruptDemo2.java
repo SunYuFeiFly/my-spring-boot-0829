@@ -1,9 +1,8 @@
-package com.test.springboot.juc.interrupt;/**
- * @Description TODO
- * @author syf_12138
- * @create 2022/7/11 17:42
- */
+package com.test.springboot.juc.interrupt;
 
+import java.util.concurrent.TimeUnit;
+
+/**
 
 import java.util.concurrent.TimeUnit;
 
