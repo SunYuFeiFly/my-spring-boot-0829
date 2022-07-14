@@ -40,6 +40,10 @@ public class SpinLockDemo {
     }
 
     public static void main(String[] args) {
+        realizeSpinLock();
+    }
+
+    private static void realizeSpinLock() {
         SpinLockDemo spinLockDemo = new SpinLockDemo();
         new Thread(() -> {
             // 线程A先获取锁
