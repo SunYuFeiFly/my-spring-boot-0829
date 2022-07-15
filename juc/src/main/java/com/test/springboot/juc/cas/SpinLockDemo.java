@@ -1,7 +1,5 @@
 package com.test.springboot.juc.cas;
 
-
-import java.sql.SQLOutput;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -14,30 +12,6 @@ import java.util.concurrent.atomic.AtomicReference;
 public class SpinLockDemo {
 
     AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
-
-    /**
-     * 线程获取锁
-     */
-    public void lock() {
-        // 获取进入该方法的线程
-        Thread thread = Thread.currentThread();
-        // 如果当前接口实现为空，则将该线程设置进去
-        while (!atomicReference.compareAndSet(null, thread)) {
-            System.out.println(thread.getName() + " 等待锁......");
-        }
-        System.out.println(thread.getName() + " come in......");
-    }
-
-    /**
-     * 线程释放锁
-     */
-    public void unLock() {
-        // 获取进入该方法的线程
-        Thread thread = Thread.currentThread();
-        // 将接口实现里面线程清空
-        atomicReference.compareAndSet(thread, null);
-        System.out.println(thread.getName() + " task over,unLock......");
-    }
 
     public static void main(String[] args) {
         realizeSpinLock();
@@ -72,5 +46,30 @@ public class SpinLockDemo {
             // 线程B释放锁
             spinLockDemo.unLock();
         }, "B").start();
+    }
+
+
+    /**
+     * 线程获取锁
+     */
+    public void lock() {
+        // 获取进入该方法的线程
+        Thread thread = Thread.currentThread();
+        // 如果当前接口实现为空，则将该线程设置进去
+        while (!atomicReference.compareAndSet(null, thread)) {
+            System.out.println(thread.getName() + " 等待锁......");
+        }
+        System.out.println(thread.getName() + " come in......");
+    }
+
+    /**
+     * 线程释放锁
+     */
+    public void unLock() {
+        // 获取进入该方法的线程
+        Thread thread = Thread.currentThread();
+        // 将接口实现里面线程清空
+        atomicReference.compareAndSet(thread, null);
+        System.out.println(thread.getName() + " task over,unLock......");
     }
 }
