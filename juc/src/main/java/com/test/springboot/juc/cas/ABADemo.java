@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class ABADemo {
 
-    static AtomicInteger atomicInteger = new AtomicInteger(100);
-    static AtomicStampedReference atomicStampedReference = new AtomicStampedReference<>(100, 1);
+    private static AtomicInteger atomicInteger = new AtomicInteger(100);
+    private static AtomicStampedReference atomicStampedReference = new AtomicStampedReference<>(100, 1);
 
     public static void main(String[] args) {
         // abaHappen();
