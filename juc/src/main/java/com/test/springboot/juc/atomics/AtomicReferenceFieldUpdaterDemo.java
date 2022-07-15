@@ -36,7 +36,7 @@ class MyVar {
         if (referenceFieldUpdater.compareAndSet(myVar, Boolean.FALSE, Boolean.TRUE)) {
             // 已经更新
             System.out.println(Thread.currentThread().getName() + "线程已经完成初始化工作！");
-            //暂停几秒钟线程
+            // 暂停几秒钟线程
             try {
                 TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
