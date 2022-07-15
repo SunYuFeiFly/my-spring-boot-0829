@@ -17,6 +17,13 @@ public class SpinLockDemo {
         realizeSpinLock();
     }
 
+    /**
+     * @Author syf_12138
+     * @Description 利用到AtomicReference类的比较对比及设置值的原子性，只能在某一时刻值能为null，
+     *              所以当为null时获取锁，同时将值替换为线程，当释放锁时再将值由线程设置为null
+     * @Return void
+     * @Date 2022/7/15 10:04
+     */
     private static void realizeSpinLock() {
         SpinLockDemo spinLockDemo = new SpinLockDemo();
         new Thread(() -> {
@@ -28,7 +35,6 @@ public class SpinLockDemo {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            ;
             // 线程A释放锁
             spinLockDemo.unLock();
         }, "A").start();
