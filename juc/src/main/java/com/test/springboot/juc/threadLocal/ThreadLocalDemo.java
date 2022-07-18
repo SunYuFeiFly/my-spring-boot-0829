@@ -29,7 +29,7 @@ public class ThreadLocalDemo {
                     // 获取每一个线程实际操作的数额
                     System.out.println(Thread.currentThread().getName() + "销售房屋数量为： " + house.saleVolume.get());
                 } finally {
-                    // 线程复用，防止后续使用该线程造成逻辑错误或内存泄漏
+                    // 线程复用，防止后续使用该线程造成逻辑错误或内存泄漏(此处直接new 线程不存在此问题，但如果使用线程池则需注意该问题)
                     house.saleVolume.remove();
                 }
             }, String.valueOf(i)).start();
