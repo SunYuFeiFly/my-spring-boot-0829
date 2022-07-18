@@ -14,7 +14,11 @@ import java.util.concurrent.TimeUnit;
 public class ThreadLocalDemo {
 
     public static void main(String[] args) {
-        // testSynchronized();
+        testSynchronized();
+        testThreadLocal();
+    }
+
+    private static void testThreadLocal() {
         House house = new House();
         for (int i = 1; i <= 5; i++) {
             new Thread(() -> {
