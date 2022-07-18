@@ -19,7 +19,6 @@ public class LockSupportDemo {
         // lockAwaitSignal();
     }
 
-
     /**
      * 测试Condition的awit()与signal(),他们都必须放在获取锁的块中(synchronized、lock)，先后顺序不能变
      */
