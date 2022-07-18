@@ -30,13 +30,13 @@ public class LongAdderAPIDemo {
         LongAccumulator longAccumulator = new LongAccumulator(new LongBinaryOperator() {
             @Override
             public long applyAsLong(long left, long right) {
-                return left + right;
+                return left * right;
             }
-        }, 0);
+        }, 2);
 
-        // 相当于0 + 2
+        // 相当于2 * 2
         longAccumulator.accumulate(2);
-        // 相当于0 + 2 + 5
+        // 相当于2 * 2 * 5
         longAccumulator.accumulate(5);
 
         System.out.println(longAccumulator.get());
