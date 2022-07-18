@@ -18,6 +18,13 @@ public class ThreadLocalDemo {
         testThreadLocal();
     }
 
+    
+    /**
+     * @Author syf_12138
+     * @Description 利用ThreadLocal统计各线程的销售数量（不需加锁），但不能统计总数，总数还需加锁全局完成
+     * @Return void
+     * @Date 2022/7/18 17:26
+     */
     private static void testThreadLocal() {
         House house = new House();
         for (int i = 1; i <= 5; i++) {
