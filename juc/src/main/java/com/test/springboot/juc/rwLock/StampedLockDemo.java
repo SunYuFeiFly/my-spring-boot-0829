@@ -1,7 +1,5 @@
 package com.test.springboot.juc.rwLock;
 
-import com.sun.corba.se.spi.ior.IdentifiableFactory;
-
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;
 
