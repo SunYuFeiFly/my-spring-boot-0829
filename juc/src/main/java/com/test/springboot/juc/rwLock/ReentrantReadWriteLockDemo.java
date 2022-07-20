@@ -191,7 +191,7 @@ class MyResourceForReentrantReadWriteLock {
 
     /**
      * @Author syf_12138
-     * @Description 模拟ReentrantLock加锁写操作
+     * @Description 模拟ReentrantLock加锁写操作（解决读读情况不可同时读取情况）
      * @param: key 主键
      * @param: value 值
      * @Return void
