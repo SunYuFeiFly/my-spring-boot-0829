@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baizhi.springboot</groupId>
+    <artifactId>springboot-inject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- 继承springboot父项目 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.4.RELEASE</version>
+    </parent>
+
+    <!--引入依赖-->
+    <dependencies>
+        <!-- 引入springboot的web支持spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- c标签库 -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- 让内嵌tomcat具有解析jsp功能 -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <!--这个依赖可以根据@ConfigurationProperties注解构建注入元数据-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--true代表这个依赖不会被（父子间）传递，仅当前项目可用-->
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <!--
+    springboot插件
+    1.打包插件，可以以java -jar打包，在打成jar包运行时，必须放入此插件配置，没有插件配置无法运行打包的项目
+    2.可以正常显示jsp页面
+     -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

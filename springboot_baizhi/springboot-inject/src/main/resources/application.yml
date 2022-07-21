@@ -1,0 +1,34 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /springboot-inject # 修改项目名 注意项目名必须以“/”开头
+servlet:
+  context-path: /springboot-inject
+  jsp:
+    init-parameters:
+      development: true  # 开启jsp页面开发模式，修改jsp页面无需重启springboot应用即可更新页面
+
+spring:
+  mvc:
+    view:
+      prefix: /     # /代表访问项目中webapp中页面
+      suffix: .jsp
+
+# 声明基本属性注入值
+# 1.String+8种基本数据类型
+name: 小崔
+age: 26
+weight: 144.60
+birthday: 2012/12/12 12:12:12 # 注意：默认的日期格式为 yyyy/mm/dd HH:MM:ss
+sex: true
+# 2.数组
+arrays: 1,2,3,4,5 # 注意：注入数组元素的时候，多个元素间使用“,”进行分割
+# 3.集合
+lists: pig,dog,cat,tiger,bee # 规则同数组一致
+maps: "{'a':'熊大','b':'熊二','c':'光头强'}"  # 注意：注入map集合要使用json形式进行注入，使用@Value注入时必须加入 "#{${属性}}" 进行注入
+
+# 声明对象方式注入
+orders:
+  id: 10
+  name: 红烧肉
+  price: 35.38
