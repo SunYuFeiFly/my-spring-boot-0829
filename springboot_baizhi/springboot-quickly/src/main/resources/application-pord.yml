@@ -1,0 +1,4 @@
+server:
+  port: 6666 # 修改内嵌服务器端口号
+  servlet:
+    context-path: /springboot_prod

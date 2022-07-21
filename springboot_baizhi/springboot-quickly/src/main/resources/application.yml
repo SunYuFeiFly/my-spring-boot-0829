@@ -3,3 +3,8 @@ server:
   port: 8888 # 修改内嵌服务器端口号
   servlet:
     context-path: /springboot-quickly # 修改项目名 注意项目名必须以“/”开头
+
+spring:
+  profiles:
+    active: pord # 让pord生效
+    # active: dev  # 让dev生效
