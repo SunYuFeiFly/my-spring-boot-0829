@@ -40,4 +40,5 @@ public class TestShiro {
 
         System.out.println("认证后状态：" + subject.isAuthenticated());
     }
+
 }
