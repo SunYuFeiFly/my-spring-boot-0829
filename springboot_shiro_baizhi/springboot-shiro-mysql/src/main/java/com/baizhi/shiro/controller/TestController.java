@@ -16,6 +16,7 @@ public class TestController {
 
     @RequestMapping("hello")
     public String hello() {
+        System.out.println("12138");
         return "springboot shiro hello !!!";
     }
 }
