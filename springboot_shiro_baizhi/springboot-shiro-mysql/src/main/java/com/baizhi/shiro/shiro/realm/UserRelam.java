@@ -1,6 +1,8 @@
 package com.baizhi.shiro.shiro.realm;
 
-
+import com.baizhi.shiro.entity.User;
+import com.baizhi.shiro.service.UserService;
+import com.baizhi.shiro.utils.ApplicationContextUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -10,6 +12,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author syf_12138
@@ -19,16 +22,26 @@ import org.apache.shiro.util.ByteSource;
 
 public class UserRelam extends AuthorizingRealm {
 
+
     /**
      * 权限授权
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        // 获取用户名
+        String username = (String) principalCollection.getPrimaryPrincipal();
+
+
+
+
+
+
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
 
         return simpleAuthorizationInfo;
     }
+
 
 
     /**
@@ -39,10 +52,16 @@ public class UserRelam extends AuthorizingRealm {
         // 获取用户名
         String username = (String) token.getPrincipal();
         System.out.println("用户名：" + token.getPrincipal());
+        // 获取UserService服务类
+        UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
+        // 根据用户名获取用户信息
+        User user = userService.getUserByUsername(username);
         // 用户认证
-        if ("zhangsan".equals(username)) {
-            // 密码123456经过MD5加密并散列10次后结果为："c36ba81086532e0e418f05a93cbd4de2"
-            return new SimpleAuthenticationInfo("zhangsan", "c36ba81086532e0e418f05a93cbd4de2", ByteSource.Util.bytes("12139"), this.getName());
+        if (null != user) {
+            return new SimpleAuthenticationInfo(user.getUsername(),
+                    user.getPassword(),
+                    ByteSource.Util.bytes(user.getSalt()),
+                    this.getName());
         }
 
         // 验证不通过

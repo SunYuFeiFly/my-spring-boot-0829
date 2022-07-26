@@ -1,6 +1,5 @@
 package com.baizhi.shiro.entity;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,19 +9,18 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author syf_12138
- * @Description 用户实体类
- * @create 2022/7/26 16:31
+ * @Description 角色-权限实体类
+ * @create 2022/7/27 0:26
  */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("blog_user")
-public class User {
+@TableName("role_permission")
+public class RolePermission {
 
     @TableId(type = IdType.AUTO)
     private String id;
-    private String username;
-    private String password;
-    private String salt;
+    private String roleId;
+    private String permissionId;
 }
