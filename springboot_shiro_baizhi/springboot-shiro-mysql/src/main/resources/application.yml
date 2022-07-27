@@ -21,3 +21,6 @@ mybatis-plus:
   typeAliasesPackage: com.baizhi.shiro.entity
   # mapper映射文件路径配置
   mapper-locations: classpath*:/mapper/*.xml
+  # 打印日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
