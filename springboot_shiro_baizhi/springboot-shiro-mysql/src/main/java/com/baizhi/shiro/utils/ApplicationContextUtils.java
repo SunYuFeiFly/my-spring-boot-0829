@@ -21,7 +21,6 @@ public class ApplicationContextUtils implements ApplicationContextAware {
         context = applicationContext;
     }
 
-
     /**
      * 根据 bean 名字，获取工厂中指定的 bean 对象
      */
