@@ -40,7 +40,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/test/**","anon");
         filterChainDefinitionMap.put("/user/login","anon");
         // 注册相关
-        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/register.jsp", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
 
         // 需拦截验证页面
         filterChainDefinitionMap.put("/**","authc");
