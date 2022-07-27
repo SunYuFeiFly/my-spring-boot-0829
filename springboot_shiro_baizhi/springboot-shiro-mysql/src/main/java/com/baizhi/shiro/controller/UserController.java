@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+
 /**
  * @author syf_12138
  * @Description 用户控制层
@@ -34,15 +36,19 @@ public class UserController {
      */
     @RequestMapping("login")
     public String login(User user) {
-        System.out.println("user: " + user);
         // 通过安全管理器工具类获取主体对象
         Subject subject = SecurityUtils.getSubject();
         // 登录验证
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
             subject.login(token);
+            System.out.println("认证" + (subject.isAuthenticated() ? "通过" : "不通过"));
             // 认证成功，跳转主页面
-            return "redirect:/index.jsp";
+            if(subject.hasRole("admin")) {
+                return "redirect:/index.jsp";
+            } else {
+                return "redirect:/main/login.jsp";
+            }
         } catch (UnknownAccountException e) {
             System.out.println("用户名不存在！");
         } catch (IncorrectCredentialsException e) {
@@ -82,9 +88,8 @@ public class UserController {
     @PostMapping(value = "/register")
     public String register(String username, String password) {
         System.out.println(username + ":" + password);
-
         Md5Hash newPassword = new Md5Hash(password, "salt", 1024);
         userService.addUser(username, newPassword.toHex(), "salt");
-        return "redirect:/user/login.jsp";
+        return "redirect:/main/login.jsp";
     }
 }
