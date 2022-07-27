@@ -11,18 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface UserService extends IService<User> {
 
-
-    /**
-     * 根据用户名获取用户
-     * @param username 用户名
-     */
-    User getUserByUsername(String username);
-
     /**
      * 注册用户
      * @param username 用户名
-     * @param toHex md5加密后密码
+     * @param password md5加密后密码
      * @param salt 盐值
      */
-    void addUser(String username, String toHex, String salt);
+    void addUser(String username, String password, String salt);
 }
