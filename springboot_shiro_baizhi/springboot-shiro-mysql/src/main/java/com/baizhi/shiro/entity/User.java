@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @TableName("blog_user")
 public class User {
 
-    @TableId(type = IdType.AUTO)
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     private String username;
     private String password;
     private String salt;

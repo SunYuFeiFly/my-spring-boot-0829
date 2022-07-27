@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 @TableName("role_permission")
 public class RolePermission {
 
-    @TableId(type = IdType.AUTO)
-    private String id;
-    private String roleId;
-    private String permissionId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+    private Integer roleId;
+    private Integer permissionId;
 }

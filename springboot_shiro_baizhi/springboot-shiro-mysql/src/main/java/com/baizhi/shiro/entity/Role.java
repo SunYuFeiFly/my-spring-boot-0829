@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @TableName("role")
 public class Role {
 
-    @TableId(type = IdType.AUTO)
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     private String name;
 }

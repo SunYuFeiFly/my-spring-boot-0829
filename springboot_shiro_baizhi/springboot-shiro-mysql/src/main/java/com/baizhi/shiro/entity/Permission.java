@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @TableName("permission")
 public class Permission {
 
-    @TableId(type = IdType.AUTO)
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     private String name;
     private String url;
 }
