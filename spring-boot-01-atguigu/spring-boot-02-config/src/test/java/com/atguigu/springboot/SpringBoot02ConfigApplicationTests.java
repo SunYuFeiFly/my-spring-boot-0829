@@ -60,7 +60,7 @@ public class SpringBoot02ConfigApplicationTests {
      */
     @Test
     public void helloServic02(){
-        boolean b = ioc.containsBean("helloServic02");
+        boolean b = ioc.containsBean("helloService02");
         System.out.println(b);
     }
 
