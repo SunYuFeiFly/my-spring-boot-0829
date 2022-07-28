@@ -14,22 +14,17 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>spring-boot-01-helloworld</name>
-    <description>快速创建springboot项目</description>
+    <description>传统maven创建springboot项目</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <!-- pring-boot场景启动器；帮我们导入了web模块正常运行所依赖的组件 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -39,7 +34,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
+    <!-- 这个插件，可以将应用打包成一个可执行的jar包，直接使用java -jar的命令进行执行 -->
     <build>
         <plugins>
             <plugin>
