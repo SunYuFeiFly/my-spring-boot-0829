@@ -51,7 +51,16 @@ public class SpringBoot02ConfigApplicationTests {
      */
     @Test
     public void testHelloService(){
-        boolean b = ioc.containsBean("helloService02");
+        boolean b = ioc.containsBean("helloService");
+        System.out.println(b);
+    }
+
+    /**
+     * 用于测试@Configuration配置文件注入bean
+     */
+    @Test
+    public void helloServic02(){
+        boolean b = ioc.containsBean("helloServic02");
         System.out.println(b);
     }
 
