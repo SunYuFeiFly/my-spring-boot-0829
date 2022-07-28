@@ -17,7 +17,7 @@ home: ‘bajie \n yiliujie’
 friends:
   lastName: zhangsan
   age: 20
-# 行内写法：
+# 行内写法：(推荐，此种写法利用@Value和@ConfigurationProperties均可获取值)
 otherFriends: {lastName: zhangsan,age: 18}
 
 # 数组（List、Set）： 用- 值表示数组中的一个元素
@@ -29,15 +29,16 @@ pets:
 otherpets: [cat, dog, pig]
 
 # 整体示例
-person:
+person01:
   lastName: hello
-    age: 18
-    boss: false
-    birth: 2017/12/12
-    maps: {k1: v1,k2: 12}
-    lists:
-      ‐ lisi
-      ‐ zhaoliu
-    dog:
-      name: 小狗
-      age: 12
+  age: 18
+  boss: false
+  birth: 2017/12/12
+  maps: {k1: v1,k2: 12}
+  lists: [lisi,zhaoliu]
+  dog:
+    name: 小狗
+    age: 12
+
+person02:
+  maps: "{'k1':'v1','k2':14}"
