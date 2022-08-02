@@ -40,4 +40,13 @@ public class HelloController {
         // 会跳转到/templates/success.html文件
         return "success";
     }
+
+    /**
+     * 确保首页访问"loccalhost:8888/crud访问的位置是templates/index.html，而不是public/index.html"
+     * 现在只是简单的跳转功能，可以不用单独写controller，可以利用springmvc拓展功能实现即可
+     */
+//    @RequestMapping({"/","/index.html"})
+//    public String index(){
+//        return "index";
+//    }
 }
