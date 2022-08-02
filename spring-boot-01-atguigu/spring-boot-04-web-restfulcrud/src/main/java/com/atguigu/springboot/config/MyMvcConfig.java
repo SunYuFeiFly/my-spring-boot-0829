@@ -1,11 +1,16 @@
 package com.atguigu.springboot.config;
 
+import com.atguigu.springboot.Listener.MyListener;
 import com.atguigu.springboot.component.LoginHandlerInterceptor;
+import com.atguigu.springboot.filter.MyFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.Filter;
+import javax.servlet.ServletContextListener;
 
 /**
  * @author syf_12138
@@ -61,6 +66,23 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
         return adapter;
     }
+
+    /**
+     * 注册过滤器
+     */
+    @Bean
+    public Filter getFilter() {
+        return new MyFilter();
+    }
+
+    /**
+     * 注册监听器
+     */
+    @Bean
+    public ServletContextListener getListener() {
+        return new MyListener();
+    }
+
 
 
 }
