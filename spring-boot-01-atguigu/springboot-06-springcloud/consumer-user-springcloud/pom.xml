@@ -6,13 +6,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.9.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.atguigu.springcloud</groupId>
-    <artifactId>consumer-user</artifactId>
+    <artifactId>consumer-user-springcloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>consumer-user</name>
+    <name>consumer-user-springcloud</name>
     <description>Spring Boot 整合springcloud 消费端</description>
 
     <properties>
