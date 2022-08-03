@@ -13,7 +13,7 @@
     <artifactId>consumer-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>consumer-user</name>
-    <description>Spring Boot 整合Dubbo 供应端</description>
+    <description>Spring Boot 整合Dubbo 消费端</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
