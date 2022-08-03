@@ -1,6 +1,7 @@
 package com.atguigu.cache.service;
 
 import com.atguigu.cache.bean.Employee;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author syf_12138
@@ -10,11 +11,11 @@ import com.atguigu.cache.bean.Employee;
 
 public interface EmployeeService {
 
-    Employee getEmp(Integer id);
+    Employee getEmp(@Param("id") Integer id);
 
     Employee updateEmp(Employee employee);
 
-    void deleteEmp(Integer id);
+    void deleteEmp(@Param("id") Integer id);
 
     Employee getEmpByLastName(String lastName);
 }
