@@ -1,13 +1,32 @@
 package com.example.task;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
-class Springboot04TaskApplicationTests {
+public class Springboot04TaskApplicationTests {
 
+    @Autowired
+    JavaMailSenderImpl mailSender;
+
+    /**
+     * 发送邮件
+     */
     @Test
-    void contextLoads() {
+    void testSendMail() {
+
     }
 
+    /**
+     * 发送复杂邮件
+     */
+    @Test
+    void testSendComplexMail() {
+
+    }
 }
