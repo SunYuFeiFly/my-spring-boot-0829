@@ -13,9 +13,11 @@
     <artifactId>springboot-04-task</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-04-task</name>
-    <description>Spring Boot 邮件</description>
+    <description>Spring Boot 异步、定时任务、邮件发送</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
 
