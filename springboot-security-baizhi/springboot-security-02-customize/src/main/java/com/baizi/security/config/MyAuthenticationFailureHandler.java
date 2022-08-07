@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
-
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         Map<String, Object> result = new HashMap<String, Object>();
