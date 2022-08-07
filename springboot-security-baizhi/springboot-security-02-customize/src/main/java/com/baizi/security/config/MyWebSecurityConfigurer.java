@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @Date 2022/8/7 19:55
  **/
 
-@Configuration
+// @Configuration
 public class MyWebSecurityConfigurer extends  WebSecurityConfigurerAdapter {
 
     @Override
@@ -24,6 +24,8 @@ public class MyWebSecurityConfigurer extends  WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 // 开启表单认证
-                .formLogin();
+                .formLogin()
+                // 设置自己的登录页面
+                .loginPage("/login");
     }
 }
