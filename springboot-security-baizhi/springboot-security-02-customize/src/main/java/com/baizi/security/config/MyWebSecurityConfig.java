@@ -40,13 +40,16 @@ public class MyWebSecurityConfig {
                 .passwordParameter("pwd")
                 // 认证成功跳转页面(服务器内部的 forewrd跳转，地址不变，始终会跳转/index请求)
                 // .successForwardUrl("/index")
-                // 默认认证成功跳转页面（重定向，路径发生改变,如果请求路径有返回请求页面，会优先跳转该路径，及、hello请求有返回内容，则优先返回该内容）
+                // 默认认证成功跳转页面（重定向，路径发生改变,如果请求路径有返回请求页面，会优先跳转该路径，及、hello请求有返回内容，则优先返回该内容）(前后端不适用，返回json比较合适)
                 // .defaultSuccessUrl("/index")
-                // 默认认证成功跳转页面(总会跳转设定请求路径)
+                // 默认认证成功跳转页面(总会跳转设定请求路径)(前后端不适用，返回json比较合适)
                 // .defaultSuccessUrl("/index", true)
-                // 请求认证成功处理
-
-
+                // 请求认证成功处理（返回json数据，适合前后端分离）
+                .successHandler(new MyAuthenticationSuccessHandler())
+                // 认证失败 forward 跳转(前后端不适用，返回json比较合适)
+                // .failureForwardUrl("/login.html")
+                // 认证失败 redirect 重定向(前后端不适用，返回json比较合适)
+                // .failureUrl("/login.html")
                 // 禁止csrf跨站请求保护
                 .and().csrf().disable()
                 .build();
