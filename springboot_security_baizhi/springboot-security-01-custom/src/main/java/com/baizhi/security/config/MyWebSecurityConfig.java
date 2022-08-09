@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /**
  * @author syf_12138
@@ -52,8 +55,12 @@ public class MyWebSecurityConfig {
             .failureHandler(new MyAuthenticationFailureHandler())
             // 开启注销登录，拿到注销登录处理对象
             .and().logout()
-            // 指定注销登录的url(默认/logout)
-            .logoutUrl("/logout")
+            // 指定注销登录的url(默认/logout，GET方式)
+            // .logoutUrl("/logout")
+            // 多个请求都能实现退出登录需求，且请求方式不固定为GET
+            .logoutRequestMatcher(new OrRequestMatcher(new AntPathRequestMatcher("/aa","GET"),
+                                                       new AntPathRequestMatcher("/bb","POST"),
+                                                       new AntPathRequestMatcher("/logout","GET")))
             // 对否让session失效
             .invalidateHttpSession(true)
             // 清除认证标记
