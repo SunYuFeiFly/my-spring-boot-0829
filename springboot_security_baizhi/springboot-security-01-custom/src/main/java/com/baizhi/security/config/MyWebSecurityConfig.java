@@ -65,8 +65,10 @@ public class MyWebSecurityConfig {
             .invalidateHttpSession(true)
             // 清除认证标记
             .clearAuthentication(true)
-            // 注销成功跳转的请求
-            .logoutSuccessUrl("/login.html")
+            // 注销成功跳转的请求(适用传统web开发)
+            // .logoutSuccessUrl("/login.html")
+            // 注销成功，返回自定义json内容（适合前后端分离系统）
+            .logoutSuccessHandler(new MyLogoutSuccessHandler())
             // 禁止csrf跨站请求保护
             .and().csrf().disable()
             .build();
