@@ -50,6 +50,16 @@ public class MyWebSecurityConfig {
             // .failureUrl("/login.html")
             // 请求认证失败处理（返回json数据，适合前后端分离）
             .failureHandler(new MyAuthenticationFailureHandler())
+            // 开启注销登录，拿到注销登录处理对象
+            .and().logout()
+            // 指定注销登录的url(默认/logout)
+            .logoutUrl("/logout")
+            // 对否让session失效
+            .invalidateHttpSession(true)
+            // 清除认证标记
+            .clearAuthentication(true)
+            // 注销成功跳转的请求
+            .logoutSuccessUrl("/login.html")
             // 禁止csrf跨站请求保护
             .and().csrf().disable()
             .build();
