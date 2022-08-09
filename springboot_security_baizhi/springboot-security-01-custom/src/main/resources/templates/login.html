@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+
+<body>
+    <h1>用户登录</h1>
+    <h2>
+        <!--request作用域：forward跳转-->
+        <div th:text="${SPRING_SECURITY_LAST_EXCEPTION}"></div>
+        <!--session作用域：redirect跳转-->
+        <div th:text="${session.SPRING_SECURITY_LAST_EXCEPTION}"></div>
+    </h2>
+    <form method="post" th:action="@{/doLogin}"><!--此处的action属性可指定其它名称，但需要在配置文件中配置-->
+        用户名：<input name="uname" type="text"/><br> <!--此处的name属性可指定其它名称，但需要在配置文件中配置-->
+        密码： <input name="pwd" type="password"/><br> <!--此处的name属性可指定其它名称，但需要在配置文件中配置-->
+        <input type="submit" value="登录"/>
+    </form>
+</body>
+</html>
