@@ -23,7 +23,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         Map<String, Object> result = new HashMap<String, Object>();
         // 打印登录成功信息
-        result.put("msg", "注销成功");
+        result.put("msg", "注销成功，当前的注销的对消为：" + authentication);
         // 打印状态码
         result.put("status", 200);
         // 打印认证信息
