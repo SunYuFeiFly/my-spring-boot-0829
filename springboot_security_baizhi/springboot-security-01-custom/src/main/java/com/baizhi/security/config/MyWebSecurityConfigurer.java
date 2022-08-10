@@ -1,5 +1,7 @@
 package com.baizhi.security.config;
 
+import com.baizhi.security.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,14 +25,25 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
 @Configuration
 public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    private final UserService userService;
+
+    @Autowired
+    public MyWebSecurityConfigurer(UserService userService) {
+        this.userService = userService;
+    }
+
     /**
      * 在工厂中自定义userDetailsService
      */
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
+        // 获取用户名
+        String username = "zhangsan";
+        // 根据用户名获取用户信息
+        com.baizhi.security.entity.User user = userService.loadUserByUsername(username);
         // noop表示明文
-        userDetailsService.createUser(User.withUsername("syf").password("{noop}123456").roles("admin").build());
+        userDetailsService.createUser(User.withUsername(user.getUsername()).password(user.getPassword()).roles(user.getAuthorities().toString()).build());
         return userDetailsService;
     }
 
