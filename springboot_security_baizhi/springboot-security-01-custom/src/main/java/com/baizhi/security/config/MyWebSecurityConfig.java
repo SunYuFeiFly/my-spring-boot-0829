@@ -1,22 +1,19 @@
 package com.baizhi.security.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /**
  * @author syf_12138
- * @Description 利用配置类配置资源权限规则
+ * @Description 利用配置类配置资源权限规则（由于创建自定义认证规则没找到方法，此类暂停使用）
  * @create 2022/8/9 14:15
  */
 
-@EnableWebSecurity
-@Configuration
+// @EnableWebSecurity
+// @Configuration
 public class MyWebSecurityConfig {
 
     @Bean
