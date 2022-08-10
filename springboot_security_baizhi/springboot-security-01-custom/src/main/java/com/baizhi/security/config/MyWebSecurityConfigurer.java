@@ -2,6 +2,7 @@ package com.baizhi.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,7 +30,7 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
         // noop表示明文
-        userDetailsService.createUser(User.withUsername("master").password("{noop}123456").roles("admin").build());
+        userDetailsService.createUser(User.withUsername("syf").password("{noop}123456").roles("admin").build());
         return userDetailsService;
     }
 
@@ -46,12 +47,22 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
     /**
-     * 自定义认证规则（推荐，当系统默认和自定义都存在时，默认自定义会替代默认）
+     * 自定义认证规则（推荐，当系统默认和自定义都存在时，默认自定义会替代默认,是工厂中的实现，不可以在其它地方注入使用）
      */
     @Override
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
         System.out.println("自定义AuthenticationManager:" + builder);
         builder.userDetailsService(userDetailsService());
+    }
+
+
+    /**
+     * 作用: 用来将自定义AuthenticationManager在工厂中进行暴露,可以在任何位置注入
+     */
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 
