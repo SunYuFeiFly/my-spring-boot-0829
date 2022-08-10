@@ -30,3 +30,35 @@
      KEY   `uid` (`uid`),
      KEY   `rid` (`rid`)
  ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- 插入用户数据
+ BEGIN;
+   INSERT INTO `user`
+   VALUES (1, 'root', '{noop}123', 1, 1, 1, 1);
+   INSERT INTO `user`
+   VALUES (2, 'admin', '{noop}123', 1, 1, 1, 1);
+   INSERT INTO `user`
+   VALUES (3, 'blr', '{noop}123', 1, 1, 1, 1);
+ COMMIT;
+ ​
+ -- 插入角色数据 授权时ROLE_进行处理，RBAC
+ BEGIN;
+   INSERT INTO `role`
+   VALUES (1, 'ROLE_product', '商品管理员');
+   INSERT INTO `role`
+   VALUES (2, 'ROLE_admin', '系统管理员');
+   INSERT INTO `role`
+   VALUES (3, 'ROLE_user', '用户管理员');
+ COMMIT;
+ ​
+ -- 插入用户角色数据
+ BEGIN;
+   INSERT INTO `user_role`
+   VALUES (1, 1, 1);
+   INSERT INTO `user_role`
+   VALUES (2, 1, 2);
+   INSERT INTO `user_role`
+   VALUES (3, 2, 2);
+   INSERT INTO `user_role`
+   VALUES (4, 3, 3);
+ COMMIT;
