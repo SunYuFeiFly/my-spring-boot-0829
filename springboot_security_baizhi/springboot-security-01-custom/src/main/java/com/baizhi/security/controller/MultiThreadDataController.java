@@ -4,7 +4,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  *                  1）、在VM Options单独进行配置： -Dspring.security.strategy=MODE_INHERITABLETHREADLOCAL
  *                  2）、在项目主启动类run()方法之前设置全局参数
  *                      System.setProperty("spring.security.strategy","MODE_INHERITABLETHREADLOCAL");
+ *                  3)、在项目主启动类run()方法之后设置SecurityContextHolder属性
+ *                      SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL)之后再使用;
  *
  * @create 2022/8/10 11:00
  */
