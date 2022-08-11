@@ -3,6 +3,7 @@ package com.baizhi.security.mapper;
 import com.baizhi.security.entity.Role;
 import com.baizhi.security.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,15 +18,11 @@ public interface UserMapper {
 
     /**
      * 根据用户名查找用户
-     * @param username
-     * @return
      */
-    User loadUserByUsername(String username);
+    User loadUserByUsername(@Param("username") String username);
 
     /**
      * 根据用户id查询一个角色，注意一个用户可能不止一种角色
-     * @param uid
-     * @return
      */
-    List<Role> getRolesByUid(Integer uid);
+    List<Role> getRolesByUid(@Param("uid") Integer uid);
 }
