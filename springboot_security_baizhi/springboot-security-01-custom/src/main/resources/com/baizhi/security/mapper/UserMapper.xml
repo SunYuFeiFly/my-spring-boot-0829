@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.baizhi.security.mapper.UserMapper">
+    <!--getRolesByUid
+        需要将角色表和用户-角色表进行关联查询，查询条件为role.id=user_role.uid
+        其中，uid是外界传入的参数
+    -->
+    <select id="getRolesByUid" resultType="Role">
+         select r.id,
+                r.name,
+                r.name_zh nameZh
+         from role r,
+              user_role ur
+         where r.id = ur.rid
+         and ur.uid = #{uid}
+     </select>
+
     <!--loadUserByUsername-->
     <select id="loadUserByUsername" resultType="User">
          select id,
@@ -16,18 +30,5 @@
          from user
          where username = #{username}
      </select>
-    ​
-    <!--getRolesByUid
-        需要将角色表和用户-角色表进行关联查询，查询条件为role.id=user_role.uid
-        其中，uid是外界传入的参数
-    -->
-    <select id="getRolesByUid" resultType="Role">
-         select r.id,
-                r.name,
-                r.name_zh nameZh
-         from role r,
-              user_role ur
-         where r.id = ur.rid
-           and ur.uid = #{uid}
-     </select>
+
 </mapper>
