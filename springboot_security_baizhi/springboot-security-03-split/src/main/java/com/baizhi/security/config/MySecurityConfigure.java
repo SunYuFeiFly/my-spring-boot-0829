@@ -103,12 +103,10 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // 所有请求在认证之后才能访问
                 .anyRequest().authenticated()
-                .and()
                 // 开启表单认证
-                .formLogin()
-                .and()
+                .and().formLogin()
                 // 认证异常
-                .exceptionHandling()
+                .and().exceptionHandling()
                 // 异常处理
                 .authenticationEntryPoint((req, resp, ex) -> {
                     resp.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
