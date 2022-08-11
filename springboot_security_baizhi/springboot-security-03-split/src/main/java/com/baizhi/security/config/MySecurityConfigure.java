@@ -108,10 +108,10 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
                 // 认证异常
                 .and().exceptionHandling()
                 // 异常处理
-                .authenticationEntryPoint((req, resp, ex) -> {
-                    resp.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-                    resp.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    resp.getWriter().println("请认证之后再去处理!");
+                .authenticationEntryPoint((request, response, exception) -> {
+                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    response.getWriter().println("请认证之后再去处理!");
                 })
                 // 开启注销登录，拿到注销登录处理对象
                 .and().logout()
@@ -128,14 +128,14 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
                 // 注销成功跳转的请求(适用传统web开发)
                 // .logoutSuccessUrl("/login.html")
                 // 注销成功，返回自定义json内容（适合前后端分离系统）
-                .logoutSuccessHandler((req, resp, auth) -> {
+                .logoutSuccessHandler((request, response, authentication) -> {
                     Map<String, Object> result = new HashMap<String, Object>();
                     result.put("msg", "注销成功");
-                    result.put("用户信息", auth.getPrincipal());
-                    resp.setContentType("application/json;charset=UTF-8");
-                    resp.setStatus(HttpStatus.OK.value());
+                    result.put("用户信息", authentication.getPrincipal());
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.setStatus(HttpStatus.OK.value());
                     String s = new ObjectMapper().writeValueAsString(result);
-                    resp.getWriter().println(s);
+                    response.getWriter().println(s);
                 })
                 // 禁止csrf跨站请求保护
                 .and().csrf().disable();
