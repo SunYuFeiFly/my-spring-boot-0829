@@ -69,9 +69,9 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
                 // 指定处理请求登录的url
                 .loginProcessingUrl("/doLogin")
                 //设置登录页用户字段
-                .usernameParameter("uname")
+                .usernameParameter("username")
                 // 设置登录页面密码字段
-                .passwordParameter("pwd")
+                .passwordParameter("password")
                 // 认证成功跳转页面(服务器内部的 forewrd跳转，地址不变，始终会跳转/index请求)
                 // .successForwardUrl("/index")
                 // 默认认证成功跳转页面（重定向，路径发生改变,如果请求路径有返回请求页面，会优先跳转该路径，及、hello请求有返回内容，则优先返回该内容）(前后端不适用，返回json比较合适)
