@@ -31,4 +31,10 @@
          where username = #{username}
      </select>
 
+    <update id="updatePassword">
+        update `user`
+        set password=#{newPassword}
+        where username = #{username}
+    </update>
+
 </mapper>
