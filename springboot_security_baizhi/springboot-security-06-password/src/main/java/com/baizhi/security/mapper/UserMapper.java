@@ -25,4 +25,9 @@ public interface UserMapper {
      * 根据用户id查询一个角色，注意一个用户可能不止一种角色
      */
     List<Role> getRolesByUid(@Param("uid") Integer uid);
+
+    /**
+     * 根据用户名更新密码方法
+     */
+    Integer updatePassword(@Param("username") String username, @Param("newPassword") String newPassword);
 }
