@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index() {
         System.out.println("index ok!");
         return "index ok";
