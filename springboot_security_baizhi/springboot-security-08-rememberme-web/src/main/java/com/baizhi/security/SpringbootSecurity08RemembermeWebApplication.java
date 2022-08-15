@@ -1,4 +1,4 @@
-package com.baizhi.security.springbootsecurity08remembermeweb;
+package com.baizhi.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
