@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -50,14 +49,19 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             // 开启表单认证
             .and().formLogin()
+
             // 认证异常
             .and().exceptionHandling()
-
             // 异常处理
             .authenticationEntryPoint((request, response, exception) -> {
-                response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+                response.setContentType("application/json;charset=UTF-8");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                response.getWriter().println("请认证之后再去处理!");
+                response.getWriter().write("尚未认证，请进行认证操作！");
+            })
+            .accessDeniedHandler((request, response, exception) -> {
+                response.setContentType("application/json;charset=UTF-8");
+                response.setStatus(HttpStatus.FORBIDDEN.value());
+                response.getWriter().write("无权访问!");
             })
 
             // 开启注销登录，拿到注销登录处理对象
