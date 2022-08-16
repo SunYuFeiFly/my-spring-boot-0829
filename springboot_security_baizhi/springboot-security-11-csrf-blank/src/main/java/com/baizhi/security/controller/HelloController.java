@@ -1,0 +1,26 @@
+package com.baizhi.security.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author syf_12138
+ * @Description 简单转账模拟类
+ * @create 2022/8/16 10:11
+ */
+
+@RestController
+public class HelloController {
+
+    @GetMapping("index")
+    public String index() {
+        return "index ok";
+    }
+
+    @PostMapping("/withdraw")
+    public String withdraw() {
+        System.out.println("执行一次转账操作");
+        return "执行一次转账操作";
+    }
+}
