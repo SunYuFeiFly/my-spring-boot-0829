@@ -66,7 +66,6 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
         kaptchaFilter.setAuthenticationManager(authenticationManagerBean());
         // 指定认证成功处理
         kaptchaFilter.setAuthenticationSuccessHandler((request, response, authentication) -> {
-            response.sendRedirect("/index.html");
             Map<String, Object> result = new HashMap<String, Object>();
             result.put("msg", "登录成功");
             result.put("用户信息", authentication.getPrincipal());
