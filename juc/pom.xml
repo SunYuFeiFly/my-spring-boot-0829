@@ -13,7 +13,7 @@
     <artifactId>juc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>juc</name>
-    <description>juc for Spring Boot</description>
+    <description>尚硅谷2022 SpringBoot 下 JUC特性</description>
 
     <properties>
         <java.version>1.8</java.version>
