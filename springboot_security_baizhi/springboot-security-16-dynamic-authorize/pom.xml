@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.6.2</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.baizhi.security</groupId>
@@ -50,7 +50,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!--引入druid-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
