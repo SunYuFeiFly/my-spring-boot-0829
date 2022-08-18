@@ -3,6 +3,7 @@ package helloword.provider;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 import helloword.utils.RabbitMQUtil;
 import org.junit.Test;
 
@@ -48,9 +49,9 @@ public class Provider {
             // 发布消息
             // 参数1: 交换机名称（此处通道直接连接队列，不用交换机）
             // 参数2: 队列名称
-            // 参数3: 传递参数的额外设置
+            // 参数3: 传递参数的额外设置(发送的消息不会因为服务器重启而丢失)
             // 参数4: 消息的具体内容（需转成byte字节）
-            channel.basicPublish("", "hello", null, "hello rbbitmq_12138".getBytes());
+            channel.basicPublish("", "hello", MessageProperties.PERSISTENT_TEXT_PLAIN, "hello rbbitmq_12138".getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -82,7 +83,7 @@ public class Provider {
             // 参数2: 队列名称
             // 参数3: 传递参数的额外设置
             // 参数4: 消息的具体内容（需转成byte字节）
-            channel.basicPublish("", "hello", null, "hello rbbitmq_12138".getBytes());
+            channel.basicPublish("", "hello", MessageProperties.PERSISTENT_TEXT_PLAIN, "hello rbbitmq_12138".getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
