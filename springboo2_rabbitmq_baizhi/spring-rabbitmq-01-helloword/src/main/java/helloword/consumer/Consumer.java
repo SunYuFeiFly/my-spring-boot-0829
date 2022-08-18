@@ -1,13 +1,11 @@
 package helloword.consumer;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.*;
 import helloword.utils.RabbitMQUtil;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -18,8 +16,9 @@ import java.util.concurrent.TimeoutException;
 
 public class Consumer {
 
+
     @Test
-    public void testGetMessage() throws IOException, TimeoutException {
+    public void testGetMessage() throws IOException, TimeoutException, InterruptedException {
         Connection connection = null;
         // 获取通信连接通道
         Channel channel = null;
@@ -47,14 +46,19 @@ public class Consumer {
             // 参数5: 附加参数
             channel.queueDeclare("hello", false, false, false, null);
             // 接收消息
-            DefaultConsumer consumer = new DefaultConsumer(channel);
             // 参数1: 消费哪个对列的消息 队列名称
             // 参数2: 开启消息的自动确认机制
             // 参数3: 消费时的回调接口
-            channel.basicConsume("hello", true, consumer);
+            channel.basicConsume("hello", true, new DefaultConsumer(channel){
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    System.out.println("接收到的消息是：" + String.valueOf(body));
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            TimeUnit.MILLISECONDS.sleep(1000);
             System.out.println("消息已接收");
             channel.close();
             connection.close();
@@ -62,7 +66,7 @@ public class Consumer {
     }
 
     @Test
-    public void testGetMessageUpgrade() throws IOException, TimeoutException {
+    public void testGetMessageUpgrade() throws IOException, TimeoutException, InterruptedException {
         Connection connection = null;
         Channel channel = null;
         try {
@@ -78,14 +82,19 @@ public class Consumer {
             // 参数5: 附加参数
             channel.queueDeclare("hello", false, false, false, null);
             // 接收消息
-            DefaultConsumer consumer = new DefaultConsumer(channel);
             // 参数1: 消费哪个对列的消息 队列名称
             // 参数2: 开启消息的自动确认机制
             // 参数3: 消费时的回调接口
-            channel.basicConsume("hello", true, consumer);
+            channel.basicConsume("hello", true, new DefaultConsumer(channel){
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    System.out.println("接收到的消息是：" + new String(body));
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            TimeUnit.MILLISECONDS.sleep(1000);
             System.out.println("消息已接收");
             RabbitMQUtil.closeConnection(channel, connection);
         }
