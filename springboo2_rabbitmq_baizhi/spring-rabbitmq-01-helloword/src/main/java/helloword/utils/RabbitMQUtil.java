@@ -12,9 +12,10 @@ import com.rabbitmq.client.ConnectionFactory;
 
 public class RabbitMQUtil {
 
-    private static  ConnectionFactory factory;
+    private static ConnectionFactory factory;
 
     static {
+        // 工厂值创建一次
         factory = new ConnectionFactory();
         factory.setHost("192.168.1.199");
         factory.setPort(5672);
