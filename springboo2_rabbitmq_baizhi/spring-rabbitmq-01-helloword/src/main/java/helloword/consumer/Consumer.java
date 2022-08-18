@@ -96,7 +96,7 @@ public class Consumer {
         } finally {
             TimeUnit.MILLISECONDS.sleep(1000);
             System.out.println("消息已接收");
-            RabbitMQUtil.closeConnection(channel, connection);
+            // RabbitMQUtil.closeConnection(channel, connection);
         }
     }
 }
