@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: springbootq_rabbitm
+
+rabbitmq:
+  host: 192.168.1.199
+  port: 5672
+  username: ems
+  password: 123456
+  virtual-host: /ems
