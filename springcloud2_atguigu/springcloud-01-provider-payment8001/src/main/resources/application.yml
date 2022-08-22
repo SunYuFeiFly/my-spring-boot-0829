@@ -1,0 +1,16 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: springcloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包 com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springclond2022?useSSL=false&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: root
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.atguigu.springcloud.entity
