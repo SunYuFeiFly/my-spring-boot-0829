@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author syf_12138
- * @Description 通用结果封装工具类
- * @create 2022/8/22 12:00
+ * @Description 公用结果集
+ * @create 2022/8/22 15:02
  */
 
 @Data
@@ -23,4 +23,3 @@ public class CommonResult<T> {
         this(code, message, null);
     }
 }
-
