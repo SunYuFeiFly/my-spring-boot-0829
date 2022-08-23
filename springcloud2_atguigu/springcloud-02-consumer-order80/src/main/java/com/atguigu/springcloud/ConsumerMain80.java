@@ -12,6 +12,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
+// @RibbonClient(name = "SPRINGCLOUD-PAYMENT-SERVICE",configuration= MySelfRule.class)
 public class ConsumerMain80 {
 
     public static void main(String[] args) {
