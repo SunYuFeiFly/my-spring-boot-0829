@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author syf_12138
- * @Description TODO
+ * @Description 远程服务调用接口
  * @create 2022/8/23 17:34
  */
 
