@@ -11,11 +11,16 @@ public interface PaymentService {
     /**
      * 正常访问，一切OK
      */
-    public String paymentInfo_OK(Integer id);
+    public String paymentInfoOK(Integer id);
 
     /**
      * 超时访问，演示降级
      */
-    public String paymentInfo_TimeOut(Integer id);
+    public String paymentInfoTimeOut(Integer id);
+
+    /**
+     * 演示服务熔断
+     */
+    public String paymentCircuitBreaker(Integer id);
 
 }
