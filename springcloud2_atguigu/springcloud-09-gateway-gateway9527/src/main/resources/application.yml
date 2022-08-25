@@ -1,0 +1,87 @@
+server:
+  port: 9527
+
+# predicates(说白了，Predicate就是为了实现一组匹配规则，让请求过来找到对应的Route进行处理)：
+# 1、After Route： - After=2017-01-20T17:42:47.789-07:00[Asia/Shanghai] 指定日期时间之后发生的请求
+# 2. The Before Route：- Before=2017-01-20T17:42:47.789-07:00[Asia/Shanghai] 指定日期时间之前发生的请求
+# 3. The Between Route：- Between=2017-01-20T17:42:47.789-07:00[Asia/Shanghai], 2017-01-21T17:42:47.789-07:00[Asia/Shanghai] 指定日期时间区间发生的请求
+# 4. The Cookie Route：- Cookie=chocolate, ch.p 带有名称为chocolate的cookie，值为ch.p（正则表达式）
+# 5. The Header Route：- Header=X-Request-Id, \d+ 请求头含有指定名称属性及对应值（正则表达式）
+# 6. The Host Route：- Host=**.somehost.org,**.anotherhost.org 主机地址路由，
+# 7. The Method Route：- Method=GET,POST 指定请求方式
+# 8. The Path Route：- Path=/red/{segment},/blue/{segment} 请求路径匹配
+# 9. The Query Route：- Query=green 请求参数
+# 10. The RemoteAddr Route：- RemoteAddr=192.168.1.1/24 限制请求人员网络ip
+# 11. The Weight Route：- Weight=group1, 8、- Weight=group1, 2 权重
+# 12. The XForwarded Route：- XForwardedRemoteAddr=192.168.1.1/24
+
+# filter(路由过滤器可用于修改进入的HTTP请求和返回的HTTP响应，路由过滤器只能指定路由进行使用):
+# AddRequestParameter filters: - AddRequestParameter=X-Request-Id,1024 #过滤器工厂会在匹配的请求头加上一对请求头，名称为X-Request-Id值为1024
+# 其他自行了解即可 https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gatewayfilter-factories
+
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        # 路由的ID，没有固定规则但要求唯一，建议配合服务名
+        - id: payment_route01
+          # 匹配后提供服务的路由地址
+          uri: http://localhost:80
+          # 断言，路径相匹配的进行路由
+          predicates:
+            - Path=/consumer/payment/get/**
+
+        # 路由的ID，没有固定规则但要求唯一，建议配合服务名
+        - id: payment_route02
+          # 匹配后提供服务的路由地址
+          uri: http://localhost:80
+          # 断言，路径相匹配的进行路由
+          predicates:
+            - Path=/consumer/payment/lb/**
+
+        # 路由的ID，没有固定规则但要求唯一，建议配合服务名
+        - id: payment_route03
+          # 匹配后提供服务的路由地址
+          # uri: http://localhost:8001
+          uri: lb://SPRINGCLOUD-PAYMENT-SERVICE
+          # 断言，路径相匹配的进行路由
+          predicates:
+            - Path=/payment/get/**
+
+        # 路由的ID，没有固定规则但要求唯一，建议配合服务名
+        - id: payment_route04
+          # 匹配后提供服务的路由地址
+          # uri: http://localhost:8001
+          uri: lb://SPRINGCLOUD-PAYMENT-SERVICE
+          # 过滤器工厂会在匹配的请求头加上一对请求头，名称为X-Request-Id值为1024
+          filters:
+            - AddRequestParameter=X-Request-Id,1024
+          # 断言，路径相匹配的进行路由
+          predicates:
+            - Path=/payment/lb/**
+
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true。
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetchRegistry: true
+    service-url:
+      # 单机
+      defaultZone: http://localhost:7001/eureka
+      # 集群
+      # defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eurek
+  instance:
+    instance-id: gateway9527
+    prefer-ip-address: true     #访问路径可以显示IP地址
+    #心跳检测与续约时间,开发时设置小些，保证服务关闭后注册中心能即使剔除服务
+    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
+    lease-renewal-interval-in-seconds: 1
+    #Eureka服务端在收到最后一次心跳后等待时间上限，单位为秒(默认是90秒)，超时将剔除服务
+    lease-expiration-duration-in-seconds: 2
