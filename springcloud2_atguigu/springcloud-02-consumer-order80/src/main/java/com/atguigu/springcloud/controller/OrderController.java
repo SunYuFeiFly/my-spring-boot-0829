@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("consumer")
+@RequestMapping("/consumer")
 public class OrderController {
 
     // public static final String PaymentSrv_URL = "http://localhost:8001";
