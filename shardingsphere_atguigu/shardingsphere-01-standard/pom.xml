@@ -13,6 +13,7 @@
     <groupId>com.atguigu.sharding</groupId>
     <artifactId>shardingsphere-01-jdbc</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>shardingsphere 水平分表</description>
 
     <properties>
         <java.version>1.8</java.version>
