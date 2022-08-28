@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,8 +11,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.atguigu.sharding</groupId>
-    <artifactId>shardingsphere-01-jdbc</artifactId>
+    <groupId>com.atguigu.shardingsphere</groupId>
+    <artifactId>shardingsphere-01-standard</artifactId>
     <version>1.0-SNAPSHOT</version>
     <description>shardingsphere 水平分表</description>
 
@@ -33,7 +34,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
+            <version>1.1.20</version>
         </dependency>
 
         <dependency>
@@ -50,7 +51,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.0</version>
+            <version>3.0.5</version>
         </dependency>
 
         <dependency>
